@@ -1,0 +1,409 @@
+/* PEEPAL TREE MINIMALIST COMPONENTS */
+
+/* Minimalist Soft Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.6rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-medium);
+  border: none;
+  gap: var(--space-xs);
+  letter-spacing: 0.3px;
+}
+
+.btn-primary {
+  background-color: var(--color-forest);
+  color: var(--color-sand-light);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-forest-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(28, 38, 28, 0.1);
+}
+
+.btn-secondary {
+  background-color: var(--color-sage);
+  color: var(--color-coconut);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-charcoal);
+  transform: translateY(-2px);
+}
+
+.btn-terracotta {
+  background-color: var(--color-terracotta);
+  color: var(--color-coconut);
+}
+
+.btn-terracotta:hover {
+  background-color: var(--color-terracotta-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(180, 80, 50, 0.15);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--color-forest);
+  color: var(--color-forest);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-forest);
+  color: var(--color-sand-light);
+  transform: translateY(-2px);
+}
+
+.btn-small {
+  padding: 0.4rem 1.2rem;
+  font-size: 0.8rem;
+}
+
+/* Minimalist Clean Cards */
+.card {
+  background-color: var(--color-coconut);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition-medium);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(140, 155, 140, 0.25);
+}
+
+.card-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transition: var(--transition-slow);
+}
+
+.card:hover .card-img-wrapper img {
+  transform: scale(1.04);
+}
+
+.card-badge {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--color-forest);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+/* Grounding heart shape favorite animations */
+.card-favorite-btn {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-forest);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: var(--transition-fast);
+  z-index: 5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.card-favorite-btn:hover {
+  transform: scale(1.15);
+  background-color: var(--color-pure-white);
+}
+
+.card-favorite-btn:active {
+  transform: scale(0.9);
+}
+
+.card-favorite-btn.active {
+  color: var(--color-terracotta);
+  animation: heart-pulse 0.4s ease-out;
+}
+
+@keyframes heart-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1.15); }
+}
+
+.card-content {
+  padding: var(--space-md) var(--space-lg);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-meta {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-sage);
+  margin-bottom: var(--space-xs);
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: var(--space-sm);
+  color: var(--color-forest);
+  line-height: 1.3;
+}
+
+.card-description {
+  font-size: 0.85rem;
+  color: var(--color-slate);
+  margin-bottom: var(--space-md);
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.6;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-sm);
+  margin-top: auto;
+}
+
+.card-price {
+  font-weight: 600;
+  color: var(--color-forest);
+  font-size: 1.05rem;
+}
+
+.card-price span {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-slate);
+}
+
+/* Minimalist Spring Overlay Dialogs */
+dialog.custom-modal {
+  margin: auto;
+  border: 1px solid rgba(140,155,140,0.15);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  width: 90%;
+  max-width: 520px;
+  background-color: var(--color-coconut);
+  padding: var(--space-lg) var(--space-xl);
+  overflow-y: auto;
+  max-height: 80vh;
+  outline: none;
+  opacity: 0;
+  transform: scale(0.96) translateY(10px);
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+dialog.custom-modal::backdrop {
+  background-color: rgba(20, 26, 20, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+dialog.custom-modal[open] {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+dialog.custom-modal[open]::backdrop {
+  opacity: 1;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-sm);
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: var(--color-slate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  transition: var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background-color: var(--color-sand);
+  color: var(--color-forest);
+}
+
+/* Minimalist form boxes */
+.form-group {
+  margin-bottom: var(--space-sm);
+}
+
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-forest);
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.65rem var(--space-sm);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-sand-light);
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--color-charcoal);
+  transition: var(--transition-fast);
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--color-sage);
+  background-color: var(--color-pure-white);
+  box-shadow: var(--shadow-focus);
+}
+
+/* Elevated dynamic micro-toast alert mechanics */
+.toast-container {
+  position: fixed;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  z-index: 9999;
+}
+
+.toast {
+  background-color: var(--color-forest);
+  color: var(--color-sand-light);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-left: 2px solid var(--color-terracotta);
+  animation: toast-slide-in 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast-close {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.toast-close:hover {
+  opacity: 1;
+}
+
+/* Minimal role selector dashboard simulator */
+.role-switch-widget {
+  position: fixed;
+  bottom: var(--space-md);
+  left: var(--space-md);
+  background-color: var(--color-coconut);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  transition: var(--transition-fast);
+}
+
+.role-switch-widget:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.role-switch-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-sage);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.role-select {
+  padding: 2px var(--space-xs);
+  font-size: 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-sand-light);
+  border: 1px solid var(--color-border);
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--color-forest);
+  outline: none;
+  cursor: pointer;
+}

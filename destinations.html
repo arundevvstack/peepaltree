@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore slow travel regions across Kerala: Wayanad misty highlands, Varkala coastal cliffs, Kovalam yoga dunes, and Alleppey backwater bays.">
+  <title>Kerala Slow Destinations Hub - Peepal Tree</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <header class="site-header" id="site-header"></header>
+
+  <main style="min-height:75vh;">
+    <!-- Destination CMS Selector Container -->
+    <div id="destination-cms-renderer">
+      <!-- Dynamic View injected here -->
+    </div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const db = window.PeepalDatabase;
+      const renderer = document.getElementById("destination-cms-renderer");
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const activeId = urlParams.get("id");
+
+      function renderHub() {
+        if (!db || !renderer) return;
+
+        if (activeId) {
+          // 1. Detailed CMS View for one destination
+          const dest = db.Destinations.find(d => d.id === activeId);
+          if (!dest) {
+            renderer.innerHTML = `<div class="container section-padding" style="padding-top:140px; text-align:center;"><h2>Destination not found</h2><a href="destinations.html" class="btn btn-primary">Return to Hub</a></div>`;
+            return;
+          }
+
+          // Filter properties, experiences, and stories related to this destination
+          const props = db.Properties.filter(p => p.destinationId === activeId);
+          const exps = db.Experiences.filter(e => e.destinationId === activeId);
+
+          renderer.innerHTML = `
+            <!-- Dest Hero -->
+            <section class="destination-detail-hero" style="background-image: url('${dest.heroImage}'); padding-top: 140px;">
+              <div class="container destination-detail-hero-content">
+                <span style="font-size:0.8rem; font-weight:700; color:var(--color-terracotta); text-transform:uppercase; letter-spacing:1px; background:rgba(246, 245, 241, 0.95); padding:4px 12px; border-radius:var(--radius-full);">Kerala Region</span>
+                <h1 style="color:var(--color-forest); font-family:var(--font-heading); margin-top:var(--space-sm);">${dest.name}</h1>
+                
+                <div class="detail-meta-list">
+                  <span class="detail-meta-item">🏡 ${props.length} Boutique Properties</span>
+                  <span class="detail-meta-item">🌿 ${exps.length} Active Experiences</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- Description & Culture Info -->
+            <section class="section-padding container grid-2" style="align-items:start;" id="dest-culture-details">
+              <div class="fade-in-section is-visible">
+                <h2 style="font-size:1.8rem; color:var(--color-forest); font-family:var(--font-heading); border-bottom:1px solid var(--color-border); padding-bottom:var(--space-sm);">The Ecosystem</h2>
+                <p style="font-size:1.1rem; line-height:1.7; color:var(--color-charcoal);">${dest.description}</p>
+                
+                <div style="margin-top:var(--space-xl); display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md);">
+                  ${dest.gallery.map(img => `<img src="${img}" alt="${dest.name} Detail" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:var(--radius-md);">`).join('')}
+                </div>
+              </div>
+
+              <div class="fade-in-section is-visible" style="background-color:var(--color-coconut); padding:var(--space-xl); border-radius:var(--radius-lg); border:1px solid var(--color-border); box-shadow:var(--shadow-sm);">
+                <h3 style="font-size:1.4rem; color:var(--color-forest); font-family:var(--font-heading); margin-bottom:var(--space-md);">Local Heritage & Spiritual Culture</h3>
+                <p style="font-size:0.95rem; color:var(--color-slate); line-height:1.7; margin:0;">${dest.culture}</p>
+                
+                <div style="margin-top:var(--space-xl); border-top:1px solid var(--color-border); padding-top:var(--space-md);">
+                  <span style="font-size:0.75rem; color:var(--color-terracotta); font-weight:700; text-transform:uppercase; display:block; margin-bottom:var(--space-xs);">Eco Integration Level</span>
+                  <p style="font-size:0.85rem; color:var(--color-slate); margin:0;">100% Carbon neutral operations. Vetted waste recycle metrics, local guide assignments, and organic farm sourcing.</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Active Experiences hosted here -->
+            <section class="section-padding" style="background-color: var(--color-sand-light); border-top: 1px solid var(--color-border);">
+              <div class="container">
+                <h2 style="text-align:center; margin-bottom:var(--space-xl); font-family:var(--font-heading);">Experiences in ${dest.name}</h2>
+                
+                ${exps.length === 0 ? `
+                  <p style="text-align:center; color:var(--color-slate);">New slow experiences in ${dest.name} are currently being curated by local naturalists.</p>
+                ` : `
+                  <div class="grid-3">
+                    ${exps.map(item => `
+                      <div class="card">
+                        <div class="card-img-wrapper">
+                          <span class="card-badge">${item.category}</span>
+                          <img src="${item.gallery[0]}" alt="${item.title}">
+                        </div>
+                        <div class="card-content">
+                          <h3 class="card-title" style="font-size:1.15rem;">${item.title}</h3>
+                          <p class="card-description" style="font-size:0.85rem;">${item.description}</p>
+                          <div class="card-footer" style="padding-top:var(--space-sm);">
+                            <div class="card-price" style="font-size:1rem;">₹${item.price.toLocaleString()}</div>
+                            <button class="btn btn-terracotta btn-small booking-trigger-btn" data-type="experience" data-id="${item.id}">Book Seat</button>
+                          </div>
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                `}
+              </div>
+            </section>
+
+            <!-- Boutique properties here -->
+            <section class="section-padding container">
+              <h2 style="text-align:center; margin-bottom:var(--space-xl); font-family:var(--font-heading);">Stay Safely: Eco-Resorts & Homestays</h2>
+              
+              ${props.length === 0 ? `
+                <p style="text-align:center; color:var(--color-slate);">Unique local properties in ${dest.name} will be active in the next launch cycle.</p>
+              ` : `
+                <div class="grid-2">
+                  ${props.map(item => `
+                    <div class="card" style="flex-direction:row; flex-wrap:wrap; min-height:260px;">
+                      <div class="card-img-wrapper" style="width:40%; min-width:180px; aspect-ratio:auto;">
+                        <img src="${item.gallery[0]}" alt="${item.name}" style="height:100%;">
+                      </div>
+                      <div class="card-content" style="width:60%; flex:1;">
+                        <span style="font-size:0.75rem; color:var(--color-sage); font-weight:700; text-transform:uppercase;">${item.type}</span>
+                        <h3 class="card-title" style="font-size:1.25rem; margin:var(--space-xs) 0;"><a href="properties.html?id=${item.id}">${item.name}</a></h3>
+                        <p class="card-description" style="font-size:0.85rem; -webkit-line-clamp: 2;">${item.description}</p>
+                        <span style="font-size:0.8rem; color:var(--color-slate); display:block; margin-bottom:var(--space-sm);">📍 ${item.location}</span>
+                        <a href="properties.html?id=${item.id}" class="btn btn-outline btn-small" style="margin-top:auto; align-self:start;">Explore Spaces</a>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              `}
+            </section>
+
+            <div style="text-align:center; padding-bottom:var(--space-xxl);">
+              <a href="destinations.html" class="btn btn-outline">&larr; Return to Destination Hub</a>
+            </div>
+          `;
+        } else {
+          // 2. Hub Grid View showing all 7 destinations
+          renderer.innerHTML = `
+            <section class="section-padding container" style="padding-top:140px;">
+              <div style="text-align:center; margin-bottom:var(--space-xxl);" class="fade-in-section is-visible">
+                <span style="font-size:0.8rem; font-weight:700; color:var(--color-terracotta); text-transform:uppercase;">Explore Kerala CMS</span>
+                <h1 style="margin: var(--space-xs) 0 var(--space-sm);">Kerala Slow Travel Regions</h1>
+                <p style="color:var(--color-slate); max-width:600px; margin: 0 auto;">Select a distinct geographic zone to discover boutique homestays, wellness circles, and local ecosystem guides.</p>
+              </div>
+
+              <div class="grid-3">
+                ${db.Destinations.map(item => {
+                  const propCount = db.Properties.filter(p => p.destinationId === item.id).length;
+                  const expCount = db.Experiences.filter(e => e.destinationId === item.id).length;
+                  
+                  return `
+                    <div class="card fade-in-section is-visible" onclick="window.location.href='destinations.html?id=${item.id}'" style="cursor:pointer;">
+                      <div class="card-img-wrapper" style="aspect-ratio:4/3;">
+                        <img src="${item.heroImage}" alt="${item.name}">
+                        <div style="position:absolute; bottom:0; left:0; width:100%; padding:var(--space-md); background:linear-gradient(to top, rgba(28,38,28,0.9), transparent); color:var(--color-sand-light);">
+                          <h3 style="color:var(--color-sand-light); font-family:var(--font-heading); margin-bottom:2px;">${item.name}</h3>
+                          <span style="font-size:0.75rem; color:var(--color-sand-dark);">${propCount} Stays &bull; ${expCount} Experiences</span>
+                        </div>
+                      </div>
+                      <div class="card-content" style="padding:var(--space-md) var(--space-lg);">
+                        <p class="card-description" style="font-size:0.85rem; margin:0; -webkit-line-clamp: 2;">${item.description}</p>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </section>
+          `;
+        }
+      }
+
+      renderHub();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Read our collection of slow travel journals, facilitator reflections, and community wellness articles from Kerala.">
+  <title>Travel Journals & Wellness Stories - Peepal Tree</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <header class="site-header" id="site-header"></header>
+
+  <main style="min-height:75vh; padding-top: calc(var(--header-height) + var(--space-xl));">
+    <div id="stories-renderer" class="container">
+      <!-- Dynamic View injected here -->
+    </div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const db = window.PeepalDatabase;
+      const renderer = document.getElementById("stories-renderer");
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const activeId = urlParams.get("id");
+
+      function renderStories() {
+        if (!db || !renderer) return;
+
+        if (activeId) {
+          // 1. Detailed Story Reader Mode
+          const story = db.Stories.find(s => s.id === activeId);
+          if (!story) {
+            renderer.innerHTML = `<div style="text-align:center; padding:var(--space-xxl) 0;"><h2>Journal entry not found</h2><a href="stories.html" class="btn btn-primary">Return to Journals</a></div>`;
+            return;
+          }
+
+          renderer.innerHTML = `
+            <article class="story-read-layout fade-in-section is-visible" id="story-reader-${story.id}">
+              <div class="story-meta-row">
+                <span style="font-weight:700; color:var(--color-terracotta); text-transform:uppercase; font-size:0.8rem;">${story.category}</span>
+                <span>&bull;</span>
+                <span>Written by <strong>${story.author}</strong></span>
+                <span>&bull;</span>
+                <span>${story.readTime}</span>
+              </div>
+
+              <h1 style="font-size:clamp(2rem, 5vw, 3rem); font-family:var(--font-heading); line-height:1.2; color:var(--color-forest); margin-bottom:var(--space-lg);">${story.title}</h1>
+              
+              <img src="${story.image}" alt="${story.title}" style="width:100%; height:420px; object-fit:cover; border-radius:var(--radius-lg); margin-bottom:var(--space-xl);">
+
+              <div class="story-body">
+                ${story.body}
+              </div>
+
+              <div style="border-top:1px solid var(--color-border); margin-top:var(--space-xxl); padding-top:var(--space-lg); text-align:center;">
+                <h4 style="font-family:var(--font-heading); margin-bottom:var(--space-md);">Intrigued by this tale?</h4>
+                <p style="font-size:0.9rem; color:var(--color-slate); max-width:500px; margin:0 auto var(--space-md);">Peepal Tree bundles storytelling with physical presence. Join upcoming circles or browse related retreats in Kerala.</p>
+                <div style="display:flex; justify-content:center; gap:var(--space-sm); flex-wrap:wrap;">
+                  <a href="experiences.html" class="btn btn-primary btn-small">Browse Experiences</a>
+                  <a href="stories.html" class="btn btn-outline btn-small">&larr; Return to Journals</a>
+                </div>
+              </div>
+            </article>
+          `;
+        } else {
+          // 2. Hub Archive View
+          renderer.innerHTML = `
+            <div style="text-align:center; margin-bottom:var(--space-xxl);" class="fade-in-section is-visible">
+              <span style="font-size:0.8rem; font-weight:700; color:var(--color-terracotta); text-transform:uppercase;">Slow Travel Journals</span>
+              <h1 style="margin:var(--space-xs) 0 var(--space-sm);">Stories From The Community</h1>
+              <p style="color:var(--color-slate); max-width:600px; margin:0 auto;">Earthy readings, wellness reflections, and local Kerala narratives compiled by naturalists and hosts.</p>
+            </div>
+
+            <!-- Featured Story slot -->
+            <div class="story-featured fade-in-section is-visible" onclick="window.location.href='stories.html?id=healing-hands-soil'" style="cursor:pointer;">
+              <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80" alt="Clay working" class="story-featured-img">
+              <div>
+                <span style="font-size:0.75rem; color:var(--color-terracotta); font-weight:700; text-transform:uppercase; display:block; margin-bottom:var(--space-xs);">Featured Reflection &bull; 4 min read</span>
+                <h2 style="font-size:1.8rem; color:var(--color-forest); font-family:var(--font-heading); margin-bottom:var(--space-sm);">Healing Hands: Finding Ourselves in the Local River-Soil</h2>
+                <p style="color:var(--color-slate); font-size:0.95rem; line-height:1.6; margin-bottom:var(--space-lg);">Ceramist Maya Sen shares her philosophy on why touching wet, organic clay connects modern minds to their root physical senses.</p>
+                <span class="btn btn-outline btn-small">Read Reflection</span>
+              </div>
+            </div>
+
+            <!-- Archive Grid -->
+            <div class="grid-2" style="margin-top:var(--space-xxl);">
+              ${db.Stories.map(item => `
+                <div class="card fade-in-section is-visible" onclick="window.location.href='stories.html?id=${item.id}'" style="cursor:pointer; flex-direction:row; flex-wrap:wrap; min-height:220px;" id="story-card-${item.id}">
+                  <div class="card-img-wrapper" style="width:35%; min-width:140px; aspect-ratio:auto;">
+                    <img src="${item.image}" alt="${item.title}" style="height:100%;">
+                  </div>
+                  <div class="card-content" style="width:65%; flex:1;">
+                    <span style="font-size:0.75rem; color:var(--color-sage); font-weight:700; text-transform:uppercase;">${item.category} &bull; ${item.readTime}</span>
+                    <h3 class="card-title" style="font-size:1.2rem; margin:var(--space-xs) 0;"><a href="stories.html?id=${item.id}">${item.title}</a></h3>
+                    <p class="card-description" style="font-size:0.85rem; -webkit-line-clamp: 2;">${item.summary}</p>
+                    <span style="font-size:0.8rem; font-weight:600; color:var(--color-terracotta); margin-top:auto;">Read Article &rarr;</span>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+      }
+
+      renderStories();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover boutique resorts, eco-treehouses, heritage homestays, and beachfront wellness centers in Kerala. Securely reserve spaces.">
+  <title>Boutique Properties & Stays - Peepal Tree</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <header class="site-header" id="site-header"></header>
+
+  <main style="min-height:75vh; padding-top: calc(var(--header-height) + var(--space-xl));">
+    <div id="properties-cms-renderer" class="container">
+      <!-- Injected via JavaScript below -->
+    </div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const db = window.PeepalDatabase;
+      const renderer = document.getElementById("properties-cms-renderer");
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const activeId = urlParams.get("id");
+
+      function renderProperties() {
+        if (!db || !renderer) return;
+
+        if (activeId) {
+          // 1. Detailed Property Page View
+          const prop = db.Properties.find(p => p.id === activeId);
+          if (!prop) {
+            renderer.innerHTML = `<div style="text-align:center; padding:var(--space-xxl) 0;"><h2>Property not found</h2><a href="properties.html" class="btn btn-primary">Return to Properties</a></div>`;
+            return;
+          }
+
+          const spaces = db.Spaces.filter(s => s.propertyId === activeId);
+          const exps = db.Experiences.filter(e => e.propertyId === activeId);
+          const retreats = db.Retreats.filter(r => r.propertyId === activeId);
+          const destName = db.Destinations.find(d => d.id === prop.destinationId)?.name || prop.destinationId;
+
+          renderer.innerHTML = `
+            <div style="margin-bottom:var(--space-xl);" class="fade-in-section is-visible">
+              <span style="font-size:0.8rem; color:var(--color-terracotta); font-weight:700; text-transform:uppercase;">${prop.type} &bull; ${destName}</span>
+              <h1 style="margin:var(--space-xs) 0 var(--space-sm);">${prop.name}</h1>
+              <p style="color:var(--color-slate); font-size:1.1rem; max-width:700px;">${prop.description}</p>
+            </div>
+
+            <!-- Image Gallery Banner -->
+            <div style="display:grid; grid-template-columns: 2fr 1fr; gap:var(--space-md); margin-bottom:var(--space-xxl);" class="fade-in-section is-visible">
+              <img src="${prop.gallery[0]}" alt="${prop.name}" style="width:100%; height:400px; object-fit:cover; border-radius:var(--radius-lg);">
+              <div style="display:flex; flex-direction:column; gap:var(--space-md);">
+                <div style="background-color:var(--color-coconut); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:var(--space-lg); height:100%; display:flex; flex-direction:column; justify-content:center;">
+                  <span style="font-size:0.75rem; color:var(--color-sage); font-weight:700; text-transform:uppercase; display:block; margin-bottom:var(--space-xs);">Hosted by</span>
+                  <strong style="font-size:1.1rem; color:var(--color-forest); display:block; margin-bottom:var(--space-sm);">${prop.hostName}</strong>
+                  <p style="font-size:0.85rem; color:var(--color-slate); margin:0;">"${prop.hostBio}"</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Layout Split -->
+            <div style="display:grid; grid-template-columns: 1.8fr 1fr; gap:var(--space-xl); align-items:start;" class="fade-in-section is-visible">
+              <!-- Left: Available Spaces & Rooms -->
+              <div>
+                <h2 style="font-family:var(--font-heading); margin-bottom:var(--space-lg); border-bottom:1px solid var(--color-border); padding-bottom:var(--space-xs);">Boutique Spaces Available</h2>
+                
+                ${spaces.length === 0 ? `
+                  <p style="color:var(--color-slate);">No private suites currently available. Stays are co-allocated within retreats.</p>
+                ` : `
+                  <div style="display:flex; flex-direction:column; gap:var(--space-lg);">
+                    ${spaces.map(s => `
+                      <div class="card" style="padding:var(--space-lg); flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:between; gap:var(--space-md);">
+                        <div style="flex:1; min-width:200px;">
+                          <h3 style="font-size:1.2rem; color:var(--color-forest); margin-bottom:var(--space-xs);">${s.name}</h3>
+                          <p style="font-size:0.85rem; color:var(--color-slate); margin:0;">Capacity: Max <strong>${s.capacity} People</strong></p>
+                          <p style="font-size:0.85rem; color:var(--color-charcoal); margin:var(--space-xs) 0 0;">${s.description}</p>
+                        </div>
+                        <div style="text-align:right;">
+                          <span style="font-size:0.8rem; color:var(--color-slate); display:block;">Starting at</span>
+                          <strong style="font-size:1.3rem; color:var(--color-forest); display:block; margin-bottom:var(--space-xs);">₹${s.pricePerNight.toLocaleString()} <span style="font-size:0.8rem; font-weight:400; color:var(--color-slate);">/ night</span></strong>
+                          <button class="btn btn-terracotta btn-small booking-trigger-btn" data-type="experience" data-id="silent-forest-breath">Inquire Space</button>
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                `}
+
+                <!-- Hosted retreats/experiences list -->
+                <div style="margin-top:var(--space-xxl);">
+                  <h3 style="font-family:var(--font-heading); margin-bottom:var(--space-md);">Hosted Events Here</h3>
+                  ${exps.length === 0 && retreats.length === 0 ? `
+                    <p style="color:var(--color-slate); font-size:0.9rem;">No scheduled events at the moment.</p>
+                  ` : `
+                    <ul style="list-style:none; display:flex; flex-direction:column; gap:var(--space-sm);">
+                      ${exps.map(e => `<li style="font-size:0.9rem;">🌿 Experience: <strong><a href="experiences.html?id=${e.id}">${e.title}</a></strong></li>`).join('')}
+                      ${retreats.map(r => `<li style="font-size:0.9rem;">📅 Retreat: <strong><a href="retreats.html?id=${r.id}">${r.title}</a></strong></li>`).join('')}
+                    </ul>
+                  `}
+                </div>
+              </div>
+
+              <!-- Right: Amenities & Policies -->
+              <div style="background-color:var(--color-coconut); border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:var(--space-xl); box-shadow:var(--shadow-sm);">
+                <h3 style="font-family:var(--font-heading); font-size:1.25rem; margin-bottom:var(--space-md); color:var(--color-forest);">Key Amenities</h3>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:var(--space-xs); font-size:0.9rem; color:var(--color-charcoal); margin-bottom:var(--space-xl);">
+                  ${prop.amenities.map(a => `<li>🍃 ${a}</li>`).join('')}
+                </ul>
+
+                <h3 style="font-family:var(--font-heading); font-size:1.25rem; margin-bottom:var(--space-md); color:var(--color-forest);">Ecosystem Policies</h3>
+                <p style="font-size:0.85rem; color:var(--color-slate); line-height:1.6; margin:0;">${prop.policies}</p>
+
+                <div style="margin-top:var(--space-lg); border-top:1px solid var(--color-border); padding-top:var(--space-md);">
+                  <span style="font-size:0.75rem; color:var(--color-slate); display:block;">Location Coordinates</span>
+                  <p style="font-size:0.85rem; color:var(--color-forest); font-weight:600; margin:0;">📍 ${prop.location}</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align:center; padding:var(--space-xxl) 0;">
+              <a href="properties.html" class="btn btn-outline">&larr; Return to Properties Hub</a>
+            </div>
+          `;
+        } else {
+          // 2. Overview Grid View for all properties
+          renderer.innerHTML = `
+            <div style="text-align:center; margin-bottom:var(--space-xxl);" class="fade-in-section is-visible">
+              <span style="font-size:0.8rem; font-weight:700; color:var(--color-terracotta); text-transform:uppercase;">The Property Ecosystem</span>
+              <h1 style="margin:var(--space-xs) 0 var(--space-sm);">Boutique Earth Stays</h1>
+              <p style="color:var(--color-slate); max-width:600px; margin:0 auto;">Ecosystem accommodations constructed to protect local ecosystems, serving as sanctuaries for mindful courses.</p>
+            </div>
+
+            <div class="grid-2">
+              ${db.Properties.map(item => {
+                const destName = db.Destinations.find(d => d.id === item.destinationId)?.name || item.destinationId;
+                
+                return `
+                  <div class="card fade-in-section is-visible" style="flex-direction:row; flex-wrap:wrap; min-height:280px;" id="prop-card-${item.id}">
+                    <div class="card-img-wrapper" style="width:40%; min-width:180px; aspect-ratio:auto;">
+                      <img src="${item.gallery[0]}" alt="${item.name}" style="height:100%;">
+                    </div>
+                    <div class="card-content" style="width:60%; flex:1;">
+                      <span style="font-size:0.75rem; color:var(--color-sage); font-weight:700; text-transform:uppercase;">${item.type}</span>
+                      <h3 class="card-title"><a href="properties.html?id=${item.id}">${item.name}</a></h3>
+                      <p class="card-description" style="font-size:0.85rem; -webkit-line-clamp: 3;">${item.description}</p>
+                      <span style="font-size:0.8rem; color:var(--color-slate); display:block; margin-bottom:var(--space-sm);">📍 ${item.location}</span>
+                      <a href="properties.html?id=${item.id}" class="btn btn-primary btn-small" style="margin-top:auto; align-self:start;">Explore Stays</a>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `;
+        }
+      }
+
+      renderProperties();
+    });
+  </script>
+</body>
+</html>

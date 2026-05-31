@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Peepal Tree is a community-driven hospitality and slow travel network in Kerala. Connect with local facilitators, boutique eco-properties, wellness circles, and retreats.">
+  <title>Peepal Tree - Mindful Experiences & Slow Hospitality in Kerala</title>
+  
+  <!-- Preload Critical Stylesheet -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Shared Header Block -->
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <!-- Immersive Hero Section -->
+    <section class="hero" id="hero-landing">
+      <div class="hero-bg-wrapper">
+        <img class="hero-image" src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1200&q=80" alt="Mindful yoga session overlooking deep green Kerala mountain ranges">
+      </div>
+      <div class="container">
+        <div class="hero-content fade-in-section is-visible">
+          <div class="hero-badge">🌿 Belonging &bull; Experiences &bull; Community</div>
+          <h1 class="hero-title">Travel with purpose.<br>Stay with meaning.</h1>
+          <p class="hero-tagline">Explore experiences that reconnect you with nature, local culture, creativity, and yourself. Rooted deeply in the calm soil of Kerala.</p>
+          <div class="hero-actions">
+            <a href="experiences.html" class="btn btn-primary" id="hero-explore-experiences">Browse Experiences</a>
+            <a href="retreats.html" class="btn btn-outline" id="hero-explore-retreats">Discover Retreats</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Philosophy Statement -->
+    <section class="section-padding container fade-in-section" id="philosophy-statement">
+      <div style="max-width:800px; margin: 0 auto; text-align:center;">
+        <h2 style="font-size:clamp(1.8rem, 4vw, 2.8rem); font-family:var(--font-heading); margin-bottom:var(--space-lg); line-height:1.2;">"We are not an aggregator. We are a network where spaces support experiences, and experiences cultivate real belonging."</h2>
+        <p style="color:var(--color-slate); font-size:1.1rem; line-height:1.8;">Peepal Tree is designed around a single human reality: true hospitality is not about renting four walls and a bed. It is about the shared silence of morning forest breathwork, the rhythmic touch of clay pottery sessions, and the warmth of community circles under a cliffside sunset.</p>
+      </div>
+    </section>
+
+    <!-- Featured Experiences Section -->
+    <section class="section-padding" style="background-color: var(--color-sand-light);" id="featured-experiences-sec">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:var(--space-xl); flex-wrap:wrap; gap:var(--space-md);">
+          <div>
+            <h2 style="margin-bottom: var(--space-xs);">Experiences That Ground You</h2>
+            <p style="color:var(--color-slate); margin:0;">Tactile, intimate gatherings led by local facilitators.</p>
+          </div>
+          <a href="experiences.html" class="btn btn-outline btn-small" id="view-all-experiences-btn">View All Experiences</a>
+        </div>
+
+        <div class="grid-3" id="home-experiences-grid">
+          <!-- Experience Card 1 -->
+          <div class="card fade-in-section">
+            <div class="card-img-wrapper">
+              <span class="card-badge">Wellness</span>
+              <button class="card-favorite-btn favorite-toggle-btn" data-id="silent-forest-breath" aria-label="Add to Favorites" id="fav-silent-forest-breath">
+                <span>♡</span>
+              </button>
+              <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Meditation under Wayanad forest canopies">
+            </div>
+            <div class="card-content">
+              <div class="card-meta"><span>📍 Wayanad</span> &bull; <span>🕒 3 Hours</span></div>
+              <h3 class="card-title"><a href="experiences.html?id=silent-forest-breath">Western Ghats Silent Forest Breathwork</a></h3>
+              <p class="card-description">A deep therapeutic breathing experience held under the early morning mist of the Wayanad tree canopies. Restore breath recovery and balance.</p>
+              <div class="card-footer">
+                <div class="card-price">₹2,500 <span>/ person</span></div>
+                <button class="btn btn-terracotta btn-small booking-trigger-btn" data-type="experience" data-id="silent-forest-breath" id="book-silent-forest-breath">Book Seat</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Card 2 -->
+          <div class="card fade-in-section">
+            <div class="card-img-wrapper">
+              <span class="card-badge">Creativity</span>
+              <button class="card-favorite-btn favorite-toggle-btn" data-id="sacred-clay-sculpting" aria-label="Add to Favorites" id="fav-sacred-clay-sculpting">
+                <span>♡</span>
+              </button>
+              <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80" alt="Hands working on wet natural clay modeling">
+            </div>
+            <div class="card-content">
+              <div class="card-meta"><span>📍 Varkala</span> &bull; <span>🕒 4 Hours</span></div>
+              <h3 class="card-title"><a href="experiences.html?id=sacred-clay-sculpting">Earthy Sacred Clay & River-Soil Sculpting</a></h3>
+              <p class="card-description">Work with native river bed clay. Maya leads an intimate, tactile art session to quiet the analytical mind and feel the soil.</p>
+              <div class="card-footer">
+                <div class="card-price">₹3,200 <span>/ person</span></div>
+                <button class="btn btn-terracotta btn-small booking-trigger-btn" data-type="experience" data-id="sacred-clay-sculpting" id="book-sacred-clay-sculpting">Book Seat</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Card 3 -->
+          <div class="card fade-in-section">
+            <div class="card-img-wrapper">
+              <span class="card-badge">Food</span>
+              <button class="card-favorite-btn favorite-toggle-btn" data-id="sattvic-food-alch" aria-label="Add to Favorites" id="fav-sattvic-food-alch">
+                <span>♡</span>
+              </button>
+              <img src="https://images.unsplash.com/photo-1543083503-0c379b7779fd?auto=format&fit=crop&w=600&q=80" alt="Fresh organic herbs and spices in wooden bowls">
+            </div>
+            <div class="card-content">
+              <div class="card-meta"><span>📍 Kovalam</span> &bull; <span>🕒 5 Hours</span></div>
+              <h3 class="card-title"><a href="experiences.html?id=sattvic-food-alch">Sattvic Culinary Alchemy Masterclass</a></h3>
+              <p class="card-description">Discover Ayurvedic cooking concepts. Forage fresh herbs from the spice garden and co-create an earthy healing lunch.</p>
+              <div class="card-footer">
+                <div class="card-price">₹4,500 <span>/ person</span></div>
+                <button class="btn btn-terracotta btn-small booking-trigger-btn" data-type="experience" data-id="sattvic-food-alch" id="book-sattvic-food-alch">Book Seat</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming retreats -->
+    <section class="section-padding container" id="home-retreats-sec">
+      <div style="text-align:center; margin-bottom:var(--space-xl);" class="fade-in-section">
+        <h2>Immersive Multiday Retreats</h2>
+        <p style="color:var(--color-slate); max-width:600px; margin:0 auto;">Fully integrated sanctuaries bundling boutique stays, daily organic nutrition plans, and local community activities.</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Retreat Item 1 -->
+        <div class="card fade-in-section" style="flex-direction:row; min-height:320px; flex-wrap:wrap;">
+          <div class="card-img-wrapper" style="width:40%; min-width:200px; aspect-ratio:auto;">
+            <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=600&q=80" alt="Sunrise yoga pose" style="height:100%;">
+          </div>
+          <div class="card-content" style="width:60%; flex:1;">
+            <span style="font-size:0.75rem; color:var(--color-terracotta); font-weight:700; text-transform:uppercase;">📅 June 12-15 (4 Days)</span>
+            <h3 class="card-title" style="margin:var(--space-xs) 0;"><a href="retreats.html?id=highland-mindfulness">Highland Canopy Silent Yoga & Mindfulness</a></h3>
+            <p class="card-description" style="font-size:0.85rem;">Cardamom forest treehouse stay, organic Sattvic dining, morning forest hiking, tea tastings, and yoga breathworks.</p>
+            <div class="card-footer" style="padding-top:var(--space-sm);">
+              <div class="card-price">₹34,000 <span>/ package</span></div>
+              <button class="btn btn-primary btn-small booking-trigger-btn" data-type="retreat" data-id="highland-mindfulness" id="book-retreat-highland">Book Retreat</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Retreat Item 2 -->
+        <div class="card fade-in-section" style="flex-direction:row; min-height:320px; flex-wrap:wrap;">
+          <div class="card-img-wrapper" style="width:40%; min-width:200px; aspect-ratio:auto;">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Relaxing Ayurveda session" style="height:100%;">
+          </div>
+          <div class="card-content" style="width:60%; flex:1;">
+            <span style="font-size:0.75rem; color:var(--color-terracotta); font-weight:700; text-transform:uppercase;">📅 June 20-25 (5 Days)</span>
+            <h3 class="card-title" style="margin:var(--space-xs) 0;"><a href="retreats.html?id=coastal-ayurveda-renew">Coastal Soul Ayurvedic Renewal & Panchakarma</a></h3>
+            <p class="card-description" style="font-size:0.85rem;">Direct Kovalam beach cottages, clinical doctors consultations, herb oils massage treatments, and ocean catamaran flow.</p>
+            <div class="card-footer" style="padding-top:var(--space-sm);">
+              <div class="card-price">₹48,000 <span>/ package</span></div>
+              <button class="btn btn-primary btn-small booking-trigger-btn" data-type="retreat" data-id="coastal-ayurveda-renew" id="book-retreat-coastal">Book Retreat</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore Kerala Destination Hub -->
+    <section class="section-padding" style="background-color: var(--color-forest); color: var(--color-sand-light);" id="explore-kerala-sec">
+      <div class="container">
+        <div class="destinations-row">
+          <div class="fade-in-section">
+            <h2 style="color:var(--color-sand-light); margin-bottom:var(--space-md);">Explore Kerala Ecosystems</h2>
+            <p style="color:var(--color-sand-dark); margin-bottom:var(--space-xl);">Our networks are organic ecosystems representing distinct local climates, from misty forests to silent fishing beaches.</p>
+            <a href="destinations.html" class="btn btn-terracotta" id="explore-kerala-all-btn">Discover Destination Hub</a>
+          </div>
+
+          <div class="destination-grid-gallery fade-in-section">
+            <div class="destination-thumbnail" onclick="window.location.href='destinations.html?id=wayanad'">
+              <img src="https://images.unsplash.com/photo-1581791538302-03537b9c97bf?auto=format&fit=crop&w=300&q=80" alt="Wayanad">
+              <div class="destination-thumbnail-overlay">Wayanad</div>
+            </div>
+            <div class="destination-thumbnail" onclick="window.location.href='destinations.html?id=varkala'">
+              <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=300&q=80" alt="Varkala">
+              <div class="destination-thumbnail-overlay">Varkala</div>
+            </div>
+            <div class="destination-thumbnail" onclick="window.location.href='destinations.html?id=alleppey'">
+              <img src="https://images.unsplash.com/photo-1593693411515-c202e974eb87?auto=format&fit=crop&w=300&q=80" alt="Alleppey">
+              <div class="destination-thumbnail-overlay">Alleppey</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet Facilitators Section -->
+    <section class="section-padding container" id="home-facilitators-sec">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:var(--space-xl); flex-wrap:wrap; gap:var(--space-md);" class="fade-in-section">
+        <div>
+          <h2>Earthy Facilitators</h2>
+          <p style="color:var(--color-slate); margin:0;">Meet the local master artisans, Ayurvedic doctors, and yoga masters.</p>
+        </div>
+        <a href="facilitators.html" class="btn btn-outline btn-small" id="all-facilitators-btn">Meet the Network</a>
+      </div>
+
+      <div class="grid-3">
+        <!-- Facilitator 1 -->
+        <div class="card fade-in-section" style="text-align:center; padding:var(--space-xl);">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80" alt="Acharya Shaji" style="border-radius:50%; width:100px; height:100px; object-fit:cover; margin:0 auto var(--space-md);">
+          <span style="font-size:0.75rem; color:var(--color-sage); font-weight:700; text-transform:uppercase;">Yoga & Meditation Master</span>
+          <h3 style="font-size:1.25rem; margin:var(--space-xs) 0;" class="card-title">Acharya Shaji</h3>
+          <p style="font-size:0.85rem; color:var(--color-slate); line-height:1.5; margin-bottom:var(--space-md);">Dedicated guru of silent breathwork who spent a decade in the silent forests of the Western Ghats.</p>
+          <a href="facilitators.html?id=acharya-shaji" class="btn btn-outline btn-small" style="margin-top:auto;" id="view-profile-shaji">View Profile</a>
+        </div>
+
+        <!-- Facilitator 2 -->
+        <div class="card fade-in-section" style="text-align:center; padding:var(--space-xl);">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Maya Sen" style="border-radius:50%; width:100px; height:100px; object-fit:cover; margin:0 auto var(--space-md);">
+          <span style="font-size:0.75rem; color:var(--color-sage); font-weight:700; text-transform:uppercase;">Ceramics & Soil Artist</span>
+          <h3 style="font-size:1.25rem; margin:var(--space-xs) 0;" class="card-title">Maya Sen</h3>
+          <p style="font-size:0.85rem; color:var(--color-slate); line-height:1.5; margin-bottom:var(--space-md);">Earthy artist focused on teaching natural creative clay therapy using local Kerala river soils.</p>
+          <a href="facilitators.html?id=maya-sen" class="btn btn-outline btn-small" style="margin-top:auto;" id="view-profile-maya">View Profile</a>
+        </div>
+
+        <!-- Facilitator 3 -->
+        <div class="card fade-in-section" style="text-align:center; padding:var(--space-xl);">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Dr. Unnikrishnan" style="border-radius:50%; width:100px; height:100px; object-fit:cover; margin:0 auto var(--space-md);">
+          <span style="font-size:0.75rem; color:var(--color-sage); font-weight:700; text-transform:uppercase;">Sattvic Nutrition Specialist</span>
+          <h3 style="font-size:1.25rem; margin:var(--space-xs) 0;" class="card-title">Dr. Unnikrishnan</h3>
+          <p style="font-size:0.85rem; color:var(--color-slate); line-height:1.5; margin-bottom:var(--space-md);">Ayurvedic doctor targeting metabolic stress relief and balancing body constitution using food science.</p>
+          <a href="facilitators.html?id=dr-unni" class="btn btn-outline btn-small" style="margin-top:auto;" id="view-profile-unni">View Profile</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Gathering Module preview -->
+    <section class="section-padding" style="background-color: var(--color-sand);" id="home-gatherings-sec">
+      <div class="container">
+        <div class="grid-2" style="align-items:center;">
+          <div class="fade-in-section">
+            <span style="font-size:0.8rem; font-weight:700; color:var(--color-terracotta); text-transform:uppercase;">Join Offline Gatherings</span>
+            <h2 style="margin: var(--space-sm) 0 var(--space-md);">Mindful Gatherings That Meet in Person</h2>
+            <p style="color:var(--color-slate); margin-bottom:var(--space-lg);">We believe connection doesn't happen on digital message boards. Our platform coordinates registrations and communications for offline regional gatherings—nature hikes, storytelling circles, and slow walks.</p>
+            <a href="community.html" class="btn btn-primary" id="view-gatherings-all-btn">Explore Local Gatherings</a>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:var(--space-md);" class="fade-in-section">
+            <!-- Gathering Card 1 -->
+            <div class="card" style="padding:var(--space-lg); border-left: 4px solid var(--color-terracotta);">
+              <span style="font-size:0.75rem; font-weight:700; color:var(--color-slate);">📅 June 5 at 5:00 PM &bull; 📍 Varkala Cliffs</span>
+              <h3 style="font-size:1.15rem; margin:var(--space-xs) 0;" class="card-title">Peepal Circle: Varkala Cliffside Sunset Sharing</h3>
+              <p style="font-size:0.85rem; color:var(--color-slate); margin:0;">An offline circle to discuss slow travel and grounding rituals as the sun sets over the cliffs.</p>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:var(--space-md); border-top:1px solid var(--color-border); padding-top:var(--space-sm);">
+                <strong style="color:var(--color-forest); font-size:0.9rem;">Free Entry</strong>
+                <button class="btn btn-terracotta btn-small booking-trigger-btn" data-type="gathering" data-id="varkala-sunset-circle" id="join-gathering-varkala">Register Seat</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Membership Circle Preview -->
+    <section class="section-padding container fade-in-section" id="membership-preview-sec">
+      <div style="background-color: var(--color-forest); color: var(--color-sand-light); padding: var(--space-xl) var(--space-xxl); border-radius: var(--radius-lg); text-align:center;">
+        <span style="font-size:0.75rem; color:var(--color-terracotta-light); font-weight:700; text-transform:uppercase; letter-spacing:1px;">The Peepal Tree Circle</span>
+        <h2 style="color:var(--color-sand-light); margin: var(--space-sm) 0 var(--space-md);">A Collective for Conscious Inhabitants</h2>
+        <p style="color:var(--color-sand-dark); max-width:600px; margin: 0 auto var(--space-lg); font-size:0.95rem;">Join our hidden membership model to unlock priority retreat allocations, exclusive storyteller journals, and early invitations to offline circles.</p>
+        <a href="membership.html" class="btn btn-terracotta" id="membership-learn-more-btn">Explore Circle Membership</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Footer Block -->
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <!-- Native HTML5 Dialog Booking Modal Placeholder -->
+  <dialog id="peepal-booking-modal" class="custom-modal"></dialog>
+
+  <!-- Core Javascript Architecture -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find answers to booking schedules, waitlists, retreat packages, property partnerships, and refund processes at Peepal Tree.">
+  <title>Frequently Answered Inquiries - FAQ Peepal Tree</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  
+  <style>
+    details.faq-accordion {
+      background-color: var(--color-coconut);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md) var(--space-lg);
+      margin-bottom: var(--space-md);
+      transition: var(--transition-fast);
+    }
+    
+    details.faq-accordion[open] {
+      box-shadow: var(--shadow-sm);
+      border-color: var(--color-sage-light);
+    }
+
+    summary.faq-summary {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--color-forest);
+      cursor: pointer;
+      list-style: none; /* Hide default arrow */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      outline: none;
+    }
+
+    summary.faq-summary::-webkit-details-marker {
+      display: none; /* Safari arrow hide */
+    }
+
+    summary.faq-summary::after {
+      content: "+";
+      font-size: 1.4rem;
+      color: var(--color-terracotta);
+      font-weight: 400;
+      transition: var(--transition-fast);
+    }
+
+    details.faq-accordion[open] summary.faq-summary::after {
+      content: "−";
+      transform: rotate(90deg);
+    }
+
+    .faq-answer {
+      margin-top: var(--space-md);
+      font-size: 0.95rem;
+      color: var(--color-slate);
+      line-height: 1.7;
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-sm);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="site-header"></header>
+
+  <main style="padding-top: calc(var(--header-height) + var(--space-xl)); min-height:75vh;">
+    <div class="container" style="max-width:800px;">
+      
+      <div style="text-align:center; margin-bottom: var(--space-xxl);" class="fade-in-section is-visible">
+        <span style="font-size:0.8rem; font-weight:700; color:var(--color-terracotta); text-transform:uppercase;">Inquiry Directory</span>
+        <h1 style="margin: var(--space-xs) 0 var(--space-sm);">Frequently Answered Questions</h1>
+        <p style="color:var(--color-slate);">Clear answers regarding bookings, retreats, facilitator registry, and cancellation rules.</p>
+      </div>
+
+      <div class="fade-in-section is-visible">
+        <h2 style="font-size:1.35rem; font-family:var(--font-heading); color:var(--color-forest); margin-bottom:var(--space-md);">Experiences & Stays</h2>
+        
+        <details class="faq-accordion">
+          <summary class="faq-summary">Is Peepal Tree a traditional booking OTA or hotel aggregator?</summary>
+          <div class="faq-answer">
+            <p>No. We are a closed-circle hospitality and experiences network. We focus on connecting travelers directly to verified local educators (facilitators) and boutique properties who host courses together. Stays are co-allocated to serve specific experiences or retreat timelines.</p>
+          </div>
+        </details>
+
+        <details class="faq-accordion">
+          <summary class="faq-summary">What is the difference between an Experience, a Retreat, and a Gathering?</summary>
+          <div class="faq-answer">
+            <p><strong>Experiences</strong> are short, seat-based single sessions (3 to 6 hours) focusing on breathwork, clay architecture, or cooking. <strong>Retreats</strong> are fully integrated multi-day packages (4 to 5 days) including boutique cabin stays, Sattvic dietary plans, and curated facilitator courses. <strong>Gatherings</strong> are free or low-cost regional offline meetups designed to build local community connection.</p>
+          </div>
+        </details>
+
+        <h2 style="font-size:1.35rem; font-family:var(--font-heading); color:var(--color-forest); margin: var(--space-xl) 0 var(--space-md);">Payments & Cancellations</h2>
+
+        <details class="faq-accordion">
+          <summary class="faq-summary">How does the waitlist approval workflow operate?</summary>
+          <div class="faq-answer">
+            <p>Because our retreats and experiences maintain strict attendee limits (between 6 and 15 people max) to guarantee high-fidelity learning, bookings go into a pending queue. Once verified by the facilitator, you will receive an approval link to secure your ticket. If a session is fully booked, you can join the silent waitlist with zero charge.</p>
+          </div>
+        </details>
+
+        <details class="faq-accordion">
+          <summary class="faq-summary">What is your refund policy for conscious retreats?</summary>
+          <div class="faq-answer">
+            <p>We respect the financial schedule of our independent property partners. Cancellations placed 14 days before a retreat start receive a 100% refund. Cancellations made between 7 and 14 days receive a 50% credit. Refunds are completely processed within 5 business days.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

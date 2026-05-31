@@ -1,0 +1,62 @@
+/* PEEPAL TREE MINIMALIST DESIGN TOKENS */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+:root {
+  /* Color Palette - Minimalist Sand & Forest */
+  --color-forest: hsl(140, 20%, 14%);
+  --color-forest-dark: hsl(140, 20%, 8%);
+  --color-forest-light: hsl(140, 15%, 22%);
+  
+  --color-sage: hsl(110, 12%, 40%);
+  --color-sage-light: hsl(110, 12%, 92%);
+  --color-sage-bg: hsl(110, 10%, 97%);
+  
+  --color-sand: hsl(38, 20%, 94%);
+  --color-sand-light: hsl(38, 20%, 97%);
+  --color-sand-dark: hsl(38, 10%, 86%);
+  
+  --color-coconut: hsl(0, 0%, 99%);
+  --color-pure-white: hsl(0, 0%, 100%);
+  
+  --color-terracotta: hsl(16, 45%, 44%);
+  --color-terracotta-hover: hsl(16, 45%, 36%);
+  --color-terracotta-light: hsl(16, 30%, 94%);
+  
+  --color-charcoal: hsl(210, 8%, 18%);
+  --color-slate: hsl(210, 5%, 48%);
+  --color-border: rgba(140, 155, 140, 0.12);
+  --color-border-focus: hsl(140, 20%, 25%);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Spacing System - Generous Breathing Space */
+  --space-xs: 0.35rem;
+  --space-sm: 0.7rem;
+  --space-md: 1.2rem;
+  --space-lg: 2rem;
+  --space-xl: 3.5rem;
+  --space-xxl: 6rem;
+
+  /* Layout */
+  --container-max: 1100px;
+  --header-height: 90px;
+
+  /* Subtle Minimalist Shadows */
+  --shadow-sm: 0 4px 20px rgba(20, 28, 20, 0.02);
+  --shadow-md: 0 12px 36px rgba(20, 28, 20, 0.03);
+  --shadow-lg: 0 24px 56px rgba(20, 28, 20, 0.05);
+  --shadow-focus: 0 0 0 3px rgba(16, 52, 48, 0.08);
+
+  /* Borders & Radius - Soft & Elegant */
+  --radius-sm: 6px;
+  --radius-md: 16px;
+  --radius-lg: 32px;
+  --radius-full: 9999px;
+
+  /* Slow, Fluid Nature-Like Transitions */
+  --transition-slow: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-medium: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}

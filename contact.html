@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reach out to the Peepal Tree community. Send inquiries for bookings, facilitator registrations, or property partnerships in Kerala.">
+  <title>Connect with the Circle - Contact Peepal Tree</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <header class="site-header" id="site-header"></header>
+
+  <main style="padding-top: calc(var(--header-height) + var(--space-xl)); min-height:75vh;">
+    <div class="container">
+      
+      <div style="text-align:center; margin-bottom: var(--space-xxl);" class="fade-in-section is-visible">
+        <span style="font-size:0.8rem; font-weight:700; color:var(--color-terracotta); text-transform:uppercase;">Human Connection</span>
+        <h1 style="margin: var(--space-xs) 0 var(--space-sm);">Connect with Our Team</h1>
+        <p style="color:var(--color-slate); max-width:600px; margin:0 auto;">Whether you are an aspiring facilitator, a boutique property host, or a traveler looking for guidance, our door is always open.</p>
+      </div>
+
+      <div class="grid-2" style="align-items:start; margin-bottom:var(--space-xxl);">
+        <!-- Form -->
+        <div class="card fade-in-section is-visible" style="padding:var(--space-xl); background-color:var(--color-coconut);">
+          <h3 style="font-family:var(--font-heading); margin-bottom:var(--space-md); color:var(--color-forest);">Send Us A Note</h3>
+          <form id="contact-note-form">
+            <div class="form-group">
+              <label class="form-label" for="contact-name">Your Name</label>
+              <input type="text" id="contact-name" class="form-input" required placeholder="Arundev V.">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="contact-email">Your Email Address</label>
+              <input type="email" id="contact-email" class="form-input" required placeholder="arundev@peepaltree.com">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-reason">Reason for Connecting</label>
+              <select id="contact-reason" class="form-select">
+                <option value="Booking Inquiry">General Booking Inquiry</option>
+                <option value="Property Partnership">Become a Property Partner</option>
+                <option value="Facilitator Registry">Join the Facilitator Network</option>
+                <option value="Folklore / Stories">Submit a Travel Journal Story</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-message">Your Message</label>
+              <textarea id="contact-message" class="form-textarea" rows="4" required placeholder="Tell us about yourself and your journey..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-terracotta" style="width:100%; margin-top:var(--space-sm);" id="contact-submit-btn">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Coordinates -->
+        <div class="fade-in-section is-visible" style="display:flex; flex-direction:column; gap:var(--space-xl);">
+          <div style="background-color:var(--color-coconut); border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:var(--space-xl); box-shadow:var(--shadow-sm);">
+            <h3 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:var(--space-md); color:var(--color-forest);">Ecosystem Coordinates</h3>
+            
+            <p style="font-size:0.95rem; line-height:1.7; color:var(--color-charcoal); margin-bottom:var(--space-md);">
+              🍃 <strong>Wayanad Office</strong><br>
+              Pookode Ridge road, Vythiri, Wayanad District, Kerala - 673576
+            </p>
+            
+            <p style="font-size:0.95rem; line-height:1.7; color:var(--color-charcoal); margin-bottom:var(--space-md);">
+              🐚 <strong>Kochi Space</strong><br>
+              Nalukettu Courtyard, Fort Kochi, Ernakulam District, Kerala - 682001
+            </p>
+
+            <p style="font-size:0.95rem; line-height:1.7; color:var(--color-charcoal); margin:0;">
+              📧 <strong>Direct Email</strong><br>
+              hello@peepaltree.community
+            </p>
+          </div>
+
+          <div style="background-color:var(--color-sand-light); border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:var(--space-xl);">
+            <h3 style="font-family:var(--font-heading); font-size:1.2rem; margin-bottom:var(--space-sm); color:var(--color-forest);">Slow Service Guarantee</h3>
+            <p style="font-size:0.85rem; color:var(--color-slate); line-height:1.6; margin:0;">We do not use automatic AI chat response widgets. Every note is hand-read and answered personally by our community coordinators in Vythiri within 24 business hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const comps = window.PeepalComponents;
+      const form = document.getElementById("contact-note-form");
+
+      if (form && comps) {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("contact-name").value;
+          comps.showToast(`Thank you, ${name}. Your note has been securely delivered to Vythiri.`);
+          form.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
